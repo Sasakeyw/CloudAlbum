@@ -1,0 +1,24 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <mat-icon>photo_album</mat-icon>
+      <span class="toolber-title">Album for the web</span>
+      <span class="spacer"></span>
+      <input type="file" style="display: none" #fileInput accept="image/*,capture=camera" (change)="onChangeFileInput()" />
+      <button mat-fab (click)="onClickFileInputButton()" matTooltip="写真追加">
+      <mat-icon>add_photo_alternate</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  </div>
+  <main>
+    <!-- Pictures container -->
+    <div class="album-body" fxLayout="row wrap">
+    <mat-card class="album-body" *ngFor="let imageList of imageLists">
+      <button mat-mini-fab class="image-clear" matTooltip="削除">
+        <mat-icon aria-label="delete_forever" (click)="onClickFileClearButton(imageList.key, imageList.fileName)">delete_forever</mat-icon>
+      </button>
+      <a href="{{imageList.url}}" target="newtab"><img mat-card-xl-image class="mdc-image-list__image"  src="{{imageList.url}}" ></a>
+    </mat-card>
+    </div>
+    </main>
