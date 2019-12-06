@@ -1,0 +1,27 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu" [overlapTrigger]="false">
+  <!-- <button mat-menu-item routerLink="/album/menu" routerLinkActive #menuRla="routerLinkActive"
+    [disabled]="menuRla.isActive">
+    <mat-icon>home</mat-icon>
+    <span>ホームに戻る </span>
+  </button> -->
+  <button mat-menu-item routerLink="/album/host" routerLinkActive #album="routerLinkActive"
+    [disabled]="album.isActive">
+    <mat-icon>list_alt</mat-icon>
+    <span>アルバム</span>
+  </button>
+  <button mat-menu-item routerLink="/album/vision-picture" routerLinkActive #menuRla="routerLinkActive"
+    [disabled]="menuRla.isActive">
+    <mat-icon>assignment_return</mat-icon>
+    <span>カメラ</span>
+  </button>
+  <button mat-menu-item routerLink="/album/vision-ocr" routerLinkActive #ocrRla="routerLinkActive"
+  [disabled]="ocrRla.isActive">
+  <mat-icon>pageview</mat-icon>
+  <span>Ocr</span>
+</button>
+</mat-menu>
+
+

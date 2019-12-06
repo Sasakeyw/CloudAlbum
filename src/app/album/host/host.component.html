@@ -1,7 +1,8 @@
 <div>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <mat-icon>photo_album</mat-icon>
+      <!-- <mat-icon>photo_album</mat-icon> -->
+      <app-hamburger-menu></app-hamburger-menu>
       <span class="toolber-title">Album for the web</span>
       <span class="spacer"></span>
       <input type="file" style="display: none" #fileInput accept="image/*,capture=camera" (change)="onChangeFileInput()" />

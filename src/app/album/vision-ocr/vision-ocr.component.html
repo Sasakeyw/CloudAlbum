@@ -1,0 +1,78 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <app-hamburger-menu></app-hamburger-menu>
+      <span class="toolber-title">Google Search for OCR</span>
+      <span class="spacer"></span>
+      <input type="file" style="display: none" #fileInput accept="image/*,capture=camera"
+        (change)="onChangeFileInput()" (imageCapture)="handleImage($event)" />
+      <button mat-icon-button (click)="onClickFileInputButton()" class="navi-button" matTooltip="写真追加">
+        <mat-icon>add_photo_alternate</mat-icon>
+      </button>
+      <button  *ngIf="multipleWebcamsAvailable" class="navi-button" mat-icon-button matTooltip="Flip Camera"
+        (click)="showNextWebcam()">
+        <mat-icon id="flip_camera_ios">flip_camera_android</mat-icon> 
+      </button>
+      <button *ngIf="showWebcam==false" class="navi-button" mat-icon-button matTooltip="Take Camera"
+      (click)="triggerSnapshot()">
+      <mat-icon id="photo_camera">photo_camera</mat-icon> 
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="button_wrapper">
+  <mat-form-field id="free-serch-field">
+    <input #tbxFreeword matInput type="text" placeholder="検索キーワード" [(ngModel)]="keyword">
+    <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-fab color="primary" matTooltip="検索"
+    (click)="searchGoogle(tbxFreeword.value)">
+    <mat-icon id="search">search</mat-icon>
+  </button>
+</div>
+
+<div class="button_wrapper" *ngIf="showWebcam">
+  <div>
+    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="allowCameraSwitch"
+      [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+      (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+  </div>
+  <div>
+    <button mat-fab matTooltip="Take A Snapshot" (click)="triggerSnapshot();">
+      <mat-icon id="photo_camera">photo_camera</mat-icon>
+    </button>
+  </div>
+</div>
+  <!-- <div class="snapshot" *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl"/>
+  </div> -->
+
+
+  <div class="example-container" class="button_wrapper" >
+    <h2>Serch Word</h2>  
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="ocrWord"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of ocrWord" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container" class="button_wrapper" >
+    <h2>Trash Word</h2>  
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+    </div>
+  </div>

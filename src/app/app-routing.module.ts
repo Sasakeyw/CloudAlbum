@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'album', pathMatch: 'full' },
-  { path: 'album', loadChildren: './album/album.module#AlbumModule' }
+  { path: 'album', loadChildren: () => import('./album/album.module').then(m => m.AlbumModule) },
+  { path: 'vision-picture', loadChildren: () => import('./album/album.module').then(m => m.AlbumModule) }
  ];
 
 @NgModule({

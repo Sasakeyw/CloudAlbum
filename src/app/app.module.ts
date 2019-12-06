@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from '../environments/environment'; // 追加
@@ -15,7 +16,7 @@ import { ServiceWorkerModule } from '@angular/service-worker'; // 追加
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) // 追加
