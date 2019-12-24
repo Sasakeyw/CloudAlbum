@@ -2,12 +2,13 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { AlbumService } from '../album.service';
+
 @Component({
-  selector: 'app-vision-picture',
-  templateUrl: './vision-picture.component.html',
-  styleUrls: ['./vision-picture.component.scss']
+  selector: 'app-vision-annotation',
+  templateUrl: './vision-annotation.component.html',
+  styleUrls: ['./vision-annotation.component.scss']
 })
-export class VisionPictureComponent implements OnInit, OnDestroy {
+export class VisionAnnotationComponent implements OnInit, OnDestroy {
 
   constructor(private albumService: AlbumService) { }
 
@@ -115,7 +116,7 @@ export class VisionPictureComponent implements OnInit, OnDestroy {
           },
           features: [
             {
-              type: 'FACE_DETECTION',
+              type: 'LOGO_DETECTION',
               maxResults: 100
             }
           ]

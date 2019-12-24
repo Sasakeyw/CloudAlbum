@@ -7,8 +7,7 @@
     <mat-icon>home</mat-icon>
     <span>ホームに戻る </span>
   </button> -->
-  <button mat-menu-item routerLink="/album/host" routerLinkActive #album="routerLinkActive"
-    [disabled]="album.isActive">
+  <button mat-menu-item routerLink="/album/host" routerLinkActive #album="routerLinkActive" [disabled]="album.isActive">
     <mat-icon>list_alt</mat-icon>
     <span>アルバム</span>
   </button>
@@ -18,10 +17,18 @@
     <span>カメラ</span>
   </button>
   <button mat-menu-item routerLink="/album/vision-ocr" routerLinkActive #ocrRla="routerLinkActive"
-  [disabled]="ocrRla.isActive">
-  <mat-icon>pageview</mat-icon>
-  <span>Ocr</span>
-</button>
+    [disabled]="ocrRla.isActive">
+    <mat-icon>pageview</mat-icon>
+    <span>Ocr</span>
+  </button>
+  <button mat-menu-item routerLink="/album/vision-annotation" routerLinkActive #annotationRla="routerLinkActive"
+    [disabled]="annotationRla.isActive">
+    <mat-icon>pageview</mat-icon>
+    <span>Annotation</span>
+  </button>
+  <button mat-menu-item routerLink="/album/map-search" routerLinkActive #mapRla="routerLinkActive"
+    [disabled]="mapRla.isActive">
+    <mat-icon>pageview</mat-icon>
+    <span>map</span>
+  </button>
 </mat-menu>
-
-

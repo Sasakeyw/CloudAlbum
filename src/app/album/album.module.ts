@@ -22,9 +22,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { VisionPictureComponent } from './vision-picture/vision-picture.component';
 import {WebcamModule} from 'ngx-webcam';
 import { VisionOcrComponent } from './vision-ocr/vision-ocr.component';
+import { VisionAnnotationComponent } from './vision-annotation/vision-annotation.component';
+import { MapSearchComponent } from './map-search/map-search.component';
+import {GoogleMapsModule} from '@angular/google-maps';
 
 @NgModule({
-  declarations: [HostComponent, HamburgerMenuComponent, VisionPictureComponent, VisionOcrComponent],
+  declarations: [HostComponent, HamburgerMenuComponent, VisionPictureComponent, VisionOcrComponent,
+     VisionAnnotationComponent, MapSearchComponent],
   imports: [
     CommonModule, HttpClientModule,
     AlbumRoutingModule, FormsModule,
@@ -37,7 +41,8 @@ import { VisionOcrComponent } from './vision-ocr/vision-ocr.component';
     AngularFireStorageModule, // 追加
     FlexLayoutModule, // 追加
     OverlayModule,
-    WebcamModule
+    WebcamModule,
+    GoogleMapsModule
   ]
 })
 export class AlbumModule { }

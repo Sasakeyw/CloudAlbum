@@ -1,0 +1,73 @@
+<p>vision-annotation works!</p>
+<div>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <!-- <mat-icon>photo_album</mat-icon> -->
+        <app-hamburger-menu></app-hamburger-menu>
+        <span class="toolber-title">感情分析カメラ</span>
+        <span class="spacer"></span>
+        <input type="file" style="display: none" #fileInput accept="image/*,capture=camera" (change)="onChangeFileInput()"
+          (imageCapture)="handleImage($event)" />
+        <button mat-icon-button (click)="onClickFileInputButton()" class="navi-button" matTooltip="写真追加">
+          <mat-icon id="add_photo_alternate">add_photo_alternate</mat-icon>
+        </button>
+        <button *ngIf="showWebcam==false" class="navi-button" mat-icon-button matTooltip="Take Camera"
+          (click)="triggerSnapshot()">
+          <mat-icon id="photo_camera">photo_camera</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  
+  <div class="center">
+    <div>表情から読み取れる感情等の予測結果</div>
+    <table border="1" cellspacing="0" cellpadding="0" class="center">
+      <thead>
+        <tr>
+          <!-- <td flex="10">No.</td> -->
+          <td flex="15">喜び</td>
+          <td flex="15">悲しみ</td>
+          <td flex="15">怒り</td>
+          <td flex="15">驚き</td>
+          <td flex="15">着帽</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let faceAnnotation of faceAnnotations">
+          <!-- <td >{{zeroPaddingNum($index + 1)}}</td> -->
+          <td>{{decisions[faceAnnotation.joyLikelihood]}}</td>
+          <td>{{decisions[faceAnnotation.sorrowLikelihood]}}</td>
+          <td>{{decisions[faceAnnotation.angerLikelihood]}}</td>
+          <td>{{decisions[faceAnnotation.surpriseLikelihood]}}</td>
+          <td>{{decisions[faceAnnotation.headwearLikelihood]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+    [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+    [videoOptions]="videoOptions"
+    [imageQuality]="1"
+    (cameraSwitched)="cameraWasSwitched($event)"
+    (initError)="handleInitError($event)"></webcam> -->
+  
+  <div class="center" *ngIf="picture">
+    <!-- <img [src]="webcamImage.imageAsDataUrl" /> -->
+    <img class="pictureBox" [src]="picture" />
+  </div>
+  
+  
+  <div class="center" *ngIf="showWebcam">
+    <div>
+      <webcam class="pictureBox" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="allowCameraSwitch"
+        [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+        (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+    </div>
+    <div>
+      <button mat-fab matTooltip="Take A Snapshot" (click)="triggerSnapshot();">
+        <mat-icon id="photo_camera">photo_camera</mat-icon>
+      </button>
+    </div>
+  </div>
+  <label>{{massage}}</label>
